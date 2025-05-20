@@ -267,7 +267,7 @@ SELECT * FROM students ORDER BY firstName DESC;
 --gives us the country list from A to Z
 SELECT country FROM students ORDER BY country ASC;
 
---To always see records in ID order, use:
+--To see records in ID order, use:
 SELECT * FROM students ORDER BY student_id;
 
 --but what if we want to view only distinct countries;
