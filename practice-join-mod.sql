@@ -225,13 +225,16 @@ SELECT employee_name, department_name
 FROM employees
     JOIN departments ON departments.department_id = employees.department_id;
 
+SELECT * FROM employees JOIN departments USING (department_id);
+--when same joining /common column exists like e.g.department_id
+
 SELECT employee_name, department_name
 FROM departments
     JOIN employees ON departments.department_id = employees.department_id;
 --same
 
 --Group By Department with Average Salary
-SELECT department_name, avg(salary)
+SELECT department_name, round(avg(salary)) AS avg_salary
 FROM departments
     JOIN employees ON departments.department_id = employees.department_id
 GROUP BY
@@ -240,7 +243,7 @@ GROUP BY
 --Count Employees in Each Department
 SELECT department_name, count(*)
 FROM departments
-    JOIN employees ON departments.department_id = employees.department_id
+    JOIN employees USING (department_id)
 GROUP BY
     department_name;
 
