@@ -238,6 +238,26 @@ WHERE
 
 SELECT *, ( SELECT sum(salary) FROM employees ) FROM employees;
 
+--Find all employees who work in the same departments as 'Jane Smith'
+
+-- Step 1: Find departments Jane Smith works in (returns multiple rows if she works in many)
+SELECT department_name
+FROM employees
+WHERE
+    employee_name = 'Jane Smith';
+--returns a single value 'MArketing'
+
+-- Step 2: Use that result in a subquery to get other employees in the same departments
+SELECT *
+FROM employees
+WHERE
+    department_name IN (
+        SELECT department_name
+        FROM employees
+        WHERE
+            employee_name = 'Jane Smith'
+    );
+
 --show the sum of salary in each department with subquery
 SELECT *
 FROM (
